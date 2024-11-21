@@ -18,6 +18,18 @@ AudioNest is your ultimate destination for discovering and enjoying podcasts wit
 - Local Storage: Persistence storage for user preferences and progress
 - Fetch API: Dynamic data fetching from podcast API
 
+## Project Design and Planning
+### Figma Layout Design
+Link to Figma Design[]
+The design of AudioNest was thoughtfully planned using Figma to create a clear, user-friendly, and visually appealing interface.
+#### Highlights
+1. Persistent components such as a header, always visible audio player and sidebar for easy navigation
+2. Dynamic pages that display shows, allows organisation and offers an immersive podcast listening experience with episode details
+### Mindmap
+To streamline development and ensure all user nneds are addresses, I created a mindmap to organise user stories and expected functionalities
+
+![audioNest planning](https://github.com/user-attachments/assets/503591b7-545c-467a-98aa-98e6d0ec6a1a)
+
 ## Getting Started 🚀
 Follow these steps to get AudioNest running on your local machine.
 
