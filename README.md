@@ -40,16 +40,16 @@ The production build will be available in hte 'dist' folder
 ## Usage 👩🏻‍💻📜
 
 1. Explore Podcasts:
-- Navigate to the homepage to see all available shows.
-- Use the search bar or filters to find your favorite podcasts.
+  - Navigate to the homepage to see all available shows.
+  - Use the search bar or filters to find your favorite podcasts.
   
 2. Play an Episode:
-- Click on an episode to start playing.
-- Use playback controls to pause, skip, or resume episodes.
+  - Click on an episode to start playing.
+  - Use playback controls to pause, skip, or resume episodes.
   
 3. Manage Favorites and Playlists:
-- Add episodes to your favorites or playlists directly from the audio player.
-- Access the favorites and playlist sections via the sidebar.
+  - Add episodes to your favorites or playlists directly from the audio player.
+  - Access the favorites and playlist sections via the sidebar.
 
 ## Project Structure 📋
 
