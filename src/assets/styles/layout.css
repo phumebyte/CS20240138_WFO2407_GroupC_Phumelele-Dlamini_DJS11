@@ -1,0 +1,76 @@
+/* Layout container */
+.layout {
+    display: flex;
+    flex-direction: row;
+    height: 100vh; /* Full height of the viewport */
+    margin: 0;
+    position: relative; /* Important for positioning the audio player */
+  }
+  
+  /* Sidebar: 20% width, 85% height */
+  .sidebar {
+    width: 20%;
+    height: 85%; /* 85% height of the container */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    z-index: 2; /* Ensure the sidebar is always above the audio player */
+  }
+  
+  /* Main content container (next to sidebar) */
+  .main-content {
+    margin-left: 0; /* Offset by the width of the sidebar */
+    width: 100%;
+    height: 85%; /* 85% height of the container */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  /* Header: 100% width, 15% height */
+  .header {
+    width: 100%;
+    height: 15%; /* 15% height */
+    background-color: #1a202c; /* Dark background for header */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 3; /* Ensure the header is above the content */
+  }
+  
+  /* Main content area (below the header, on top of the audio player) */
+  .main {
+    width: 100%;
+    height: 100%; 
+    overflow-y: auto; /* Allow scrolling if content exceeds the container */
+    padding: 20px;
+    background-color: #f7fafc; /* Light background for main content */
+    box-sizing: border-box;
+    z-index: 1; /* Ensure the main content is beneath the audio player */
+  }
+  
+  /* Audio player: full width, positioned at the bottom, overlaps sidebar */
+  .audio-player {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15%; /* 15% height */
+    background-color: #2d3748; /* Dark background for audio player */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 0; /* Ensure audio player is at the bottom */
+  }
