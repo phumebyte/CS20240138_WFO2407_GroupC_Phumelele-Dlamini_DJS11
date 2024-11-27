@@ -13,6 +13,7 @@ const PodcastList = () => {
       setError(null); // Reset error state before fetching
       try {
         const data = await fetchPreviews();
+        console.log(data)
         setPreviews(data);
       } catch (err) {
         setError(err.message);
@@ -44,8 +45,7 @@ const PodcastList = () => {
                 className="podcast-image"
               />
               <div className="podcast-info">
-                <h3 className="podcast-title">{preview.name}</h3>
-                <p className="podcast-author">{preview.author}</p>
+                <h3 className="podcast-title">{preview.title}</h3>
               </div>
             </div>
           ))}
