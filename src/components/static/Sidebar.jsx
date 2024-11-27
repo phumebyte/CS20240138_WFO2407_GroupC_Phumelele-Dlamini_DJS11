@@ -1,10 +1,15 @@
 import { NavLink } from "react-router-dom";
+import logo from '../../assets/images/audioNEST-logo.png'
 import '../../assets/styles/sidebar.css';
 
 function Sidebar() {
   return (
     <nav>
-      <h1>AudioNest</h1>
+        <div className="logo-container">
+            <img src={logo} alt="audioNest Logo" className="logo"/>
+            <h1>AudioNest</h1>
+        </div>
+      
       <ul>
         <li>
           <NavLink

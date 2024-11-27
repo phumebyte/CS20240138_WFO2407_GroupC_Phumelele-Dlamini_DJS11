@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
+import profilePicture from '../../assets/images/Phumelele-Dlamini.jpg'
 import '../../assets/styles/header.css';
 
 function Header() {
@@ -17,7 +18,7 @@ function Header() {
       {/* Profile Section */}
       <div className="profile">
         <img
-          src="" 
+          src={profilePicture} 
           alt="Profile"
           className="profile-image"
         />

@@ -12,6 +12,19 @@ nav {
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  height: 4em;
+  width: 4em;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 nav h1 {
   font-size: 1.5rem;
   font-weight: bold;
