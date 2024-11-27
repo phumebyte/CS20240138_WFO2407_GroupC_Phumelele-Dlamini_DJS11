@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchPreviews } from "../../services/showsApi";
-import "../../assets/styles/episodeList.css"; // Import the CSS file
+import "../../assets/styles/episodeList.css"; 
+import LoadingSpinner from "../shared/LoadingSpinner";
 
 const PodcastList = () => {
   const [previews, setPreviews] = useState([]);
@@ -32,7 +33,7 @@ const PodcastList = () => {
     <div className="podcast-list-container">
 
       {/* Loading State */}
-      {loading && <p>Loading...</p>}
+      {loading && <LoadingSpinner/>}
 
       {/* Error State */}
       {error && <p style={{ color: "red" }}>Error: {error}</p>}
