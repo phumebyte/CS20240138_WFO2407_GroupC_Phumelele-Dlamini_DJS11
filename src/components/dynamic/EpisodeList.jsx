@@ -18,7 +18,10 @@ const PodcastList = () => {
       try {
         const data = await fetchPreviews();
         //console.log(data)
-        setPreviews(data);
+
+        //sort the data alphabetically before setting in state and previewing them
+        const sortedData = data.sort((a, b) => a.title.localeCompare(b.title));
+        setPreviews(sortedData);
       } catch (err) {
         setError(err.message);
       } finally {
