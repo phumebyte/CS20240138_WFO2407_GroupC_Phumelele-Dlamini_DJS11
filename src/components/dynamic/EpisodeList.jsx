@@ -72,7 +72,13 @@ const PodcastList = () => {
                 className="podcast-image"
               />
               <div className="podcast-info">
-                <h3 className="podcast-title">{preview.title}</h3>
+                <div className="podcast-title">
+                    <h6>{preview.title}</h6>
+                </div>
+                <div className="seasonsCounter">
+                    <p className="seasonsTitle">SEASONS</p>
+                    <p> {preview.seasons}</p>
+                </div>
               </div>
             </div>
           ))}
