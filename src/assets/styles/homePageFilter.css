@@ -1,0 +1,32 @@
+.homepage-filter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    background-color: #f4f4f9;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .filter-button {
+    padding: 10px 20px;
+    background-color: #38a3a5;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .filter-button:hover {
+    background-color: #1f2937;
+  }
+  
+  .filter-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(56, 163, 165, 0.5);
+  }
+  
