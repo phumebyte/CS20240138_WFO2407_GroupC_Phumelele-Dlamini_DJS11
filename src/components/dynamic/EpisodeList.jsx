@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchPreviews } from "../../services/showsApi";
 import "../../assets/styles/episodeList.css"; // Import the CSS file
 
@@ -6,6 +7,8 @@ const PodcastList = () => {
   const [previews, setPreviews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const  navigate = useNavigate();
+
 
   useEffect(() => {
     const loadPreviews = async () => {
@@ -13,7 +16,7 @@ const PodcastList = () => {
       setError(null); // Reset error state before fetching
       try {
         const data = await fetchPreviews();
-        console.log(data)
+        //console.log(data)
         setPreviews(data);
       } catch (err) {
         setError(err.message);
@@ -38,7 +41,10 @@ const PodcastList = () => {
       {!loading && !error && (
         <div className="podcast-grid">
           {previews.map((preview) => (
-            <div className="podcast-card" key={preview.id}>
+            <div className="podcast-card" 
+                 key={preview.id}
+                 onClick={() => navigate(`/show/${preview.id}`)}
+                 >
               <img
                 src={preview.image}
                 alt={preview.name}
