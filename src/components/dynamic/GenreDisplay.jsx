@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { fetchPreviews } from "../../services/showsApi";
 import "../../assets/styles/genres.css";
+import LoadingSpinner from "../shared/LoadingSpinner";
 
 const GenreDisplay = () => {
   const [genres, setGenres] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchGenres = async () => {
+        setLoading(true);
       try {
         const previews = await fetchPreviews();
         
@@ -30,6 +33,8 @@ const GenreDisplay = () => {
         setGenres(genreList);
       } catch (error) {
         console.error("Error fetching genres:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -38,6 +43,9 @@ const GenreDisplay = () => {
 
   return (
     <div className="genre-grid">
+
+      {loading && <LoadingSpinner/>} 
+       
       {genres.map((genre, index) => (
         <div key={index} className="genre-card">
           {genre.image && (
