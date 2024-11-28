@@ -3,31 +3,44 @@ import { fetchPreviews } from "../../services/showsApi";
 import "../../assets/styles/genres.css";
 import LoadingSpinner from "../shared/LoadingSpinner";
 
+const GENRES = { 
+  1: 'Personal Growth',
+  2: 'Investigative Journalism',
+  3: 'History',
+  4: 'Comedy',
+  5: 'Entertainment',
+  6: 'Business',
+  7: 'Fiction',
+  8: 'News',
+  9: 'Kids and Family'
+};
+
 const GenreDisplay = () => {
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchGenres = async () => {
-        setLoading(true);
+      setLoading(true);
       try {
         const previews = await fetchPreviews();
-        
+
         // Group shows by genre
         const genreMap = {};
         previews.forEach((show) => {
-          show.genres.forEach((genre) => {
-            if (!genreMap[genre]) {
-              genreMap[genre] = { name: genre, shows: [] };
+          show.genres.forEach((genreId) => {
+            const genreName = GENRES[genreId] || `Unknown Genre (${genreId})`; // Map genre ID to name
+            if (!genreMap[genreId]) {
+              genreMap[genreId] = { name: genreName, shows: [] };
             }
-            genreMap[genre].shows.push(show);
+            genreMap[genreId].shows.push(show);
           });
         });
 
-        // Create an array of genres with at least one show image
+        // Create an array of genres with their shows' details
         const genreList = Object.values(genreMap).map((genre) => ({
           name: genre.name,
-          image: genre.shows[0]?.image || null, // Use the first show's image as a preview
+          shows: genre.shows, // Include all shows for this genre
         }));
 
         setGenres(genreList);
@@ -43,19 +56,23 @@ const GenreDisplay = () => {
 
   return (
     <div className="genre-grid">
+      {loading && <LoadingSpinner />}
 
-      {loading && <LoadingSpinner/>} 
-       
       {genres.map((genre, index) => (
         <div key={index} className="genre-card">
-          {genre.image && (
-            <img
-              src={genre.image}
-              alt={genre.name}
-              className="genre-image"
-            />
-          )}
           <p className="genre-name">{genre.name}</p>
+          <div className="genre-images">
+            {genre.shows.map((show, showIndex) => (
+              <div key={showIndex} className="show-image-container">
+                <img
+                  src={show.image}
+                  alt={show.name}
+                  className="show-image"
+                />
+                <p className="show-name">{show.name}</p>
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>

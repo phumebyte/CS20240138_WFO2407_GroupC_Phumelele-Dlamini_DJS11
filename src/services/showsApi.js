@@ -1,7 +1,3 @@
-//getAllSHows()
-//getShowDetails(showId)
-// src/services/showApis.js
-
 const BASE_URL = "https://podcast-api.netlify.app";
 
 /**
@@ -11,6 +7,7 @@ const BASE_URL = "https://podcast-api.netlify.app";
 export const fetchPreviews = async () => {
   try {
     const response = await fetch(`${BASE_URL}`);
+    console.log("Preview Response:", response); // Debugging
     if (!response.ok) {
       throw new Error("Failed to fetch previews");
     }
@@ -28,7 +25,8 @@ export const fetchPreviews = async () => {
  */
 export const fetchGenreById = async (id) => {
   try {
-    const response = await fetch(`${BASE_URL}/genre/${id}`);
+    const response = await fetch(`${BASE_URL}/genre/${id}`); 
+    console.log("Genre Response:", response); // Debugging
     if (!response.ok) {
       throw new Error(`Failed to fetch genre with ID ${id}`);
     }
@@ -46,7 +44,8 @@ export const fetchGenreById = async (id) => {
  */
 export const fetchShowById = async (id) => {
   try {
-    const response = await fetch(`${BASE_URL}/id/${id}`);
+    const response = await fetch(`${BASE_URL}/id/${id}`); 
+    console.log("Show Response:", response); // Debugging
     if (!response.ok) {
       throw new Error(`Failed to fetch show with ID ${id}`);
     }
