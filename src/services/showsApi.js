@@ -26,15 +26,15 @@ export const fetchPreviews = async () => {
  * @param {string} genreId - The ID of the genre to fetch.
  * @returns {Promise<Object>} Detailed information about the genre.
  */
-export const fetchGenreById = async (genreId) => {
+export const fetchGenreById = async (id) => {
   try {
-    const response = await fetch(`${BASE_URL}/genre/${genreId}`);
+    const response = await fetch(`${BASE_URL}/genre/${id}`);
     if (!response.ok) {
-      throw new Error(`Failed to fetch genre with ID ${genreId}`);
+      throw new Error(`Failed to fetch genre with ID ${id}`);
     }
     return await response.json();
   } catch (error) {
-    console.error(`Error fetching genre with ID ${genreId}:`, error);
+    console.error(`Error fetching genre with ID ${id}:`, error);
     throw error;
   }
 };
@@ -44,15 +44,15 @@ export const fetchGenreById = async (genreId) => {
  * @param {string} showId - The ID of the show to fetch.
  * @returns {Promise<Object>} Detailed information about the show, including seasons and episodes.
  */
-export const fetchShowById = async (showId) => {
+export const fetchShowById = async (id) => {
   try {
-    const response = await fetch(`${BASE_URL}/id/${showId}`);
+    const response = await fetch(`${BASE_URL}/id/${id}`);
     if (!response.ok) {
-      throw new Error(`Failed to fetch show with ID ${showId}`);
+      throw new Error(`Failed to fetch show with ID ${id}`);
     }
     return await response.json();
   } catch (error) {
-    console.error(`Error fetching show with ID ${showId}:`, error);
+    console.error(`Error fetching show with ID ${id}:`, error);
     throw error;
   }
 };

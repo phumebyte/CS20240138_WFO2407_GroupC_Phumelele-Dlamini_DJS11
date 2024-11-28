@@ -1,0 +1,38 @@
+.genre-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .genre-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+  
+  .genre-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .genre-image {
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  
+  .genre-name {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: bold;
+  }
+  
