@@ -1,8 +1,8 @@
-import PropTypes from "prop-types"; // Import PropTypes for prop validation
+import PropTypes from "prop-types"; 
 import Sidebar from "./static/Sidebar";
 import Header from "./static/Header";
 import AudioPlayer from "./static/AudioPlayer";
-import "../assets/styles/layout.css"; // Make sure to add custom CSS for the layout
+import "../assets/styles/layout.css"; 
 
 function Layout({ children }) {
   return (
