@@ -27,6 +27,14 @@ function Sidebar() {
             Favourites
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/genres"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Genres
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
