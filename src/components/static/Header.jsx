@@ -1,31 +1,84 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FiChevronDown } from "react-icons/fi";
-import profilePicture from '../../assets/images/Phumelele-Dlamini.jpg'
-import '../../assets/styles/header.css';
+import profilePicture from "../../assets/images/Phumelele-Dlamini.jpg";
+import search from "../../assets/images/search.svg"
+import "../../assets/styles/header.css";
+import { fetchPreviews } from "../../services/showsApi";
 
 function Header() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [allShows, setAllShows] = useState([]);
+  const [filteredShows, setFilteredShows] = useState([]);
+
+  useEffect(() => {
+    const fetchShows = async () => {
+      try {
+        const shows = await fetchPreviews();
+        setAllShows(shows);
+      } catch (error) {
+        console.error("Error fetching shows:", error);
+      }
+    };
+
+    fetchShows();
+  }, []);
+
+  // Handle search input change
+  const handleSearchChange = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+
+    // Filter shows based on the search term
+    const results = allShows.filter((show) =>
+      show.title.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredShows(results);
+  };
 
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
+
+  // Clear the search input and filtered shows array when the X button is cancelled
+  const clearSearchResults = () => {
+    setSearchTerm("");
+    setFilteredShows([]); 
+  };
+  
 
   return (
     <header className="header">
       {/* Search Bar */}
       <div className="search-bar">
-        <input type="text" placeholder="Search shows..." />
+        <span>
+          <img src={search} alt="search-svg"/>
+        </span>
+        <input
+          type="text"
+          placeholder="Search shows..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+        {searchTerm && (
+          <div className="search-results">
+            <button className="close-results" onClick={clearSearchResults}>✕</button>
+            {filteredShows.length > 0 ? (
+              filteredShows.slice(0, 10).map((show) => ( 
+                <div key={show.id} className="search-result-item">
+                  <img src={show.image} alt={show.title} className="show-image" />
+                  <span>{show.title}</span>
+                </div>
+              ))
+            ) : (
+              <div className="no-results">No results found</div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Profile Section */}
       <div className="profile">
-        <img
-          src={profilePicture} 
-          alt="Profile"
-          className="profile-image"
-        />
-        <FiChevronDown
-          className="dropdown-icon"
-          onClick={toggleDropdown}
-        />
+        <img src={profilePicture} alt="Profile" className="profile-image" />
+        <FiChevronDown className="dropdown-icon" onClick={toggleDropdown} />
 
         {/* Dropdown Menu */}
         {isDropdownOpen && (
