@@ -1,7 +1,6 @@
 import PropTypes from "prop-types"; 
 import Sidebar from "./static/Sidebar";
 import Header from "./static/Header";
-import AudioPlayer from "./static/AudioPlayer";
 import "../assets/styles/layout.css"; 
 
 function Layout({ children }) {
@@ -19,8 +18,7 @@ function Layout({ children }) {
         <main className="main">{children}</main>
       </div>
       
-      {/* Audio Player */}
-      <AudioPlayer className="audio-player" />
+
     </div>
   );
 }

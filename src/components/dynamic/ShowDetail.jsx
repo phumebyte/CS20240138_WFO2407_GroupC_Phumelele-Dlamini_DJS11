@@ -1,14 +1,16 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import '../../assets/styles/showDetail.css'
+import '../../assets/styles/showDetail.css';
+import AudioPlayer from '../static/AudioPlayer'; 
 
 const ShowDetail = ({ show }) => {
-  if (!show) return null; 
+  if (!show) return null;
 
   const seasons = Array.isArray(show.seasons) ? show.seasons : [];
 
   const [visibleSeasons, setVisibleSeasons] = useState({});
   const [visibleEpisodes, setVisibleEpisodes] = useState({});
+  const [selectedEpisode, setSelectedEpisode] = useState(null); 
 
   const toggleSeason = (index) => {
     setVisibleSeasons((prev) => ({
@@ -17,7 +19,8 @@ const ShowDetail = ({ show }) => {
     }));
   };
 
-  const toggleEpisode = (seasonIndex, episodeIndex) => {
+  const toggleEpisode = (seasonIndex, episodeIndex, episode) => {
+    setSelectedEpisode(episode); 
     setVisibleEpisodes((prev) => ({
       ...prev,
       [`${seasonIndex}-${episodeIndex}`]: !prev[`${seasonIndex}-${episodeIndex}`],
@@ -26,11 +29,10 @@ const ShowDetail = ({ show }) => {
 
   return (
     <div className="show-details">
-      <h2>{show.title}</h2> 
-      <img src={show.image} alt={show.title} className="show-image" /> {/* Show image */}
-      <p>{show.description}</p> 
+      <h2>{show.title}</h2>
+      <img src={show.image} alt={show.title} className="show-image" />
+      <p>{show.description}</p>
 
-      {/* Render seasons if available */}
       <div>
         <p>Seasons:</p>
         {seasons.length > 0 ? (
@@ -38,7 +40,6 @@ const ShowDetail = ({ show }) => {
             {seasons.map((season, index) => (
               <div key={index} className="season-card">
                 <div className="season-container">
-                  {/* Make season title clickable */}
                   <button
                     onClick={() => toggleSeason(index)}
                     className="season-button"
@@ -46,7 +47,6 @@ const ShowDetail = ({ show }) => {
                     <strong>{season.title}</strong>
                   </button>
 
-                  {/* Display the season image */}
                   {season.image && (
                     <img
                       src={season.image}
@@ -56,20 +56,17 @@ const ShowDetail = ({ show }) => {
                   )}
                 </div>
 
-                {/* Render episodes if this season is visible */}
                 {visibleSeasons[index] && season.episodes && season.episodes.length > 0 && (
                   <ol>
                     {season.episodes.map((episode, episodeIndex) => (
                       <li key={episodeIndex}>
-                        {/* Make episode title clickable */}
                         <button
-                          onClick={() => toggleEpisode(index, episodeIndex)}
+                          onClick={() => toggleEpisode(index, episodeIndex, episode)}
                           className="episode-button"
                         >
                           <strong>{episode.title}</strong>
                         </button>
 
-                        {/* Render episode details if this episode is visible */}
                         {visibleEpisodes[`${index}-${episodeIndex}`] && episode.description && (
                           <p>{episode.description}</p>
                         )}
@@ -84,6 +81,13 @@ const ShowDetail = ({ show }) => {
           <p>No seasons available</p>
         )}
       </div>
+
+      {selectedEpisode && (
+        <AudioPlayer
+          episode={selectedEpisode}
+          onFavorite={(episode) => console.log(`Favorite toggled for: ${episode.title}`)}
+        />
+      )}
     </div>
   );
 };
@@ -102,6 +106,7 @@ ShowDetail.propTypes = {
             title: PropTypes.string.isRequired,
             duration: PropTypes.string,
             description: PropTypes.string,
+            file: PropTypes.string.isRequired, 
           })
         ),
       })
