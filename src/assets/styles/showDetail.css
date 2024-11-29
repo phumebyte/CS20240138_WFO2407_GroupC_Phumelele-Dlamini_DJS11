@@ -1,0 +1,64 @@
+/* Container for the show details */
+.show-detail-container {
+    padding: 20px;
+    background-color: #f9f9f9; 
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    max-width: 800px;
+    margin: 0 auto; 
+  }
+  
+  /* Title styling */
+  .show-detail-container h1 {
+    font-size: 2rem;
+    color: #333; 
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  /* Image styling */
+  .show-image {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin: 20px auto; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  }
+  
+  /* Description styling */
+  .show-detail-container p {
+    font-size: 1rem;
+    color: #555; 
+    line-height: 1.6; 
+    margin-bottom: 15px;
+    text-align: justify; 
+  }
+  
+  /* Seasons count */
+  .show-detail-container p:last-child {
+    font-weight: bold;
+    color: #22577a; 
+    text-align: center;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .show-detail-container {
+      padding: 15px;
+    }
+  
+    .show-detail-container h1 {
+      font-size: 1.5rem;
+    }
+  
+    .show-image {
+      max-width: 300px;
+    }
+  
+    .show-detail-container p {
+      font-size: 0.9rem;
+    }
+  }
+  

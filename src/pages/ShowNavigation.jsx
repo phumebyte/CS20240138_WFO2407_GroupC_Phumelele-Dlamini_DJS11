@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchPreviews } from "../services/showsApi";
-import "../assets/styles/ShowNavigation.css"
+import "../assets/styles/ShowNavigation.css";
 import LoadingSpinner from "../components/shared/LoadingSpinner";
+import ShowDetail from "../components/dynamic/ShowDetail";
 
 const ShowNavigation = () => {
   const { id } = useParams();
@@ -13,12 +14,12 @@ const ShowNavigation = () => {
 
   useEffect(() => {
     const loadShow = async () => {
-    console.log('Fetching data successful')
+      console.log("Fetching data...");
       setLoading(true);
       setError(null);
       try {
         const data = await fetchPreviews(id);
-        console.log(data)
+        console.log(data);
         setShow(data);
       } catch (err) {
         setError(err.message);
@@ -30,7 +31,7 @@ const ShowNavigation = () => {
     loadShow();
   }, [id]);
 
-  if (loading) return < LoadingSpinner />;
+  if (loading) return <LoadingSpinner />;
   if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
 
   return (
@@ -41,21 +42,10 @@ const ShowNavigation = () => {
 
       {show && (
         <div className="show-grid">
-          {/* Left Column */}
-          <div className="show-details">
-            <img src={show.image} alt={show.title} className="show-image" />
-            <h1 className="show-title">{show.title}</h1>
-            <p className="show-description">{show.description}</p>
-            <div className="genres">
-              {show.genres.map((genre, index) => (
-                <button key={index} className="genre-button">
-                  {genre}
-                </button>
-              ))}
-            </div>
-          </div>
+          {/* Left Column: Show Details */}
+          <ShowDetail show={show} />
 
-          {/* Right Column */}
+          {/* Right Column: Episodes */}
           <div className="episode-list">
             <h2>Episodes</h2>
             <div className="episodes-grid">
@@ -74,3 +64,4 @@ const ShowNavigation = () => {
 };
 
 export default ShowNavigation;
+

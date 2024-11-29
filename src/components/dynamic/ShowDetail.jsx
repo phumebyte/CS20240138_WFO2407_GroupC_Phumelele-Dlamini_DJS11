@@ -1,47 +1,28 @@
 // This component will display the details of the specific show
 
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { fetchPreviews } from "../../services/showsApi"; 
+import PropTypes from "prop-types";
 import "../../assets/styles/showDetail.css";
-import LoadingSpinner from "../shared/LoadingSpinner";
 
-const ShowDetail = () => {
-  const { id } = useParams(); // Get the ID from the URL
-  const [showDetails, setShowDetails] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadShowDetails = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const details = await fetchPreviews(id); 
-        console.log(details)
-        setShowDetails(details);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadShowDetails();
-  }, [id]);
-
-  if (loading) return <LoadingSpinner />;
-  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
-  if (!showDetails) return <p>No details found for this show.</p>;
+const ShowDetail = ({ show }) => {
+  if (!show) return <p>No details found for this show.</p>;
 
   return (
     <div className="show-detail-container">
-      <h1>{showDetails.title}</h1>
-      <img src={showDetails.image} alt={showDetails.title} className="show-image" />
-      <p>{showDetails.description}</p>
-      <p>Seasons: {showDetails.seasons}</p>
+      <h1>{show.title}</h1>
+      <img src={show.image} alt={show.title} className="show-image" />
+      <p>{show.description}</p>
+      <p>Seasons: {show.seasons}</p>
     </div>
   );
+};
+
+ShowDetail.propTypes = {
+  show: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    seasons: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default ShowDetail;
