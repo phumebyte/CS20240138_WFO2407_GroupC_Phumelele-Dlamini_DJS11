@@ -1,6 +1,9 @@
 # Welcome to AudioNest 🎙️
 AudioNest is your ultimate destination for discovering and enjoying podcasts with a seamless and interactive experience. With features like personalized favorites, episode progress tracking, and categorized playlists, AudioNest is designed to make your podcast journey enjoyable and intuitive. Whether you’re catching up on your favorite shows, exploring new genres, or managing your playlists, AudioNest has it all in one place.
 
+### Netlify
+[https://aquamarine-sprite-2a7877.netlify.app]
+
 ## Features 🌟
 - Explore Shows: Browse all available shows, sorted alphabetically with options to filter and search
 - Play Episodes: Listen to your favourite episodes with a persistent audio player featuring playback controls and progress tracking
@@ -20,7 +23,7 @@ AudioNest is your ultimate destination for discovering and enjoying podcasts wit
 
 ## Project Design and Planning
 ### Figma Layout Design
-Link to Figma Design[]
+Link to Figma Design[https://www.figma.com/design/db6UJNScKl9eWUqOmBFOS2/audioNest?node-id=0-1&t=xZKXPoeRbad9gn84-1]
 The design of AudioNest was thoughtfully planned using Figma to create a clear, user-friendly, and visually appealing interface.
 #### Highlights
 1. Persistent components such as a header, always visible audio player and sidebar for easy navigation
