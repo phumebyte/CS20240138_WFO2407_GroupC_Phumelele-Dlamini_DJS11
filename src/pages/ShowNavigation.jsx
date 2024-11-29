@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchShowById } from "../services/showsApi";
+import { fetchPreviews } from "../services/showsApi";
 import "../assets/styles/ShowNavigation.css"
 
 const ShowNavigation = () => {
@@ -16,7 +16,7 @@ const ShowNavigation = () => {
       setLoading(true);
       setError(null);
       try {
-        const data = await fetchShowById(id);
+        const data = await fetchPreviews(id);
         console.log(data)
         setShow(data);
       } catch (err) {

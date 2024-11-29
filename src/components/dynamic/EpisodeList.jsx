@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchPreviews } from "../../services/showsApi";
 import "../../assets/styles/episodeList.css";
 import LoadingSpinner from "../shared/LoadingSpinner";
@@ -8,6 +9,7 @@ const PodcastList = () => {
   const [previews, setPreviews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadPreviews = async () => {
@@ -19,6 +21,8 @@ const PodcastList = () => {
         const sortedData = data.sort((a, b) => 
             a.title.localeCompare(b.title)
           );
+
+        console.log(data)
         setPreviews(sortedData);
       } catch (err) {
         setError(err.message);
@@ -59,6 +63,11 @@ const PodcastList = () => {
     setPreviews(sortedPreviews);
   };
 
+  const handelCardClick = (id) => {
+    navigate(`/shows/${id}`);
+  }
+
+
   return (
     <div className="podcast-list-container">
       <HomePageFilter onSort={handleSort} />
@@ -69,7 +78,7 @@ const PodcastList = () => {
       {!loading && !error && (
         <div className="podcast-grid">
           {previews.map((preview) => (
-            <div className="podcast-card" key={preview.id}>
+            <div className="podcast-card" key={preview.id} onClick={() => handelCardClick(preview.id)}>
               <img
                 src={preview.image}
                 alt={preview.title}
