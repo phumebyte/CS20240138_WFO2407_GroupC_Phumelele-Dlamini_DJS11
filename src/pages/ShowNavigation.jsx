@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchPreviews } from "../services/showsApi";
 import "../assets/styles/ShowNavigation.css"
+import LoadingSpinner from "../components/shared/LoadingSpinner";
 
 const ShowNavigation = () => {
   const { id } = useParams();
@@ -29,7 +30,7 @@ const ShowNavigation = () => {
     loadShow();
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return < LoadingSpinner />;
   if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
 
   return (

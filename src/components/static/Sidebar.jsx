@@ -21,6 +21,14 @@ function Sidebar() {
         </li>
         <li>
           <NavLink
+            to="/shows"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Shows
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/favourites"
             className={({ isActive }) => (isActive ? "active" : "")}
           >

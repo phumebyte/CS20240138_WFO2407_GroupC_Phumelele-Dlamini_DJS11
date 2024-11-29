@@ -63,8 +63,8 @@ const PodcastList = () => {
     setPreviews(sortedPreviews);
   };
 
-  const handelCardClick = (id) => {
-    navigate(`/shows/${id}`);
+  const handelCardClick = () => {
+    navigate(`/shows/`);
   }
 
 
