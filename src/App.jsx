@@ -3,7 +3,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Favourites from "./pages/Favourites";
 import ShowNavigation from "./pages/ShowNavigation";
-import Genres from "./pages/Genres"
+import Genres from "./pages/Genres";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/favourites" element={<Favourites />} />
           <Route path="/shows/:id" element={<ShowNavigation />} />
-          <Route path="genres/" element={<Genres/>} />
+          <Route path="genres/" element={<Genres />} />
         </Routes>
       </Layout>
     </Router>

@@ -1,28 +1,51 @@
 // This component will display the details of the specific show
 
-import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import "../../assets/styles/showDetail.css";
+import LoadingSpinner from "../shared/LoadingSpinner";
 
-const ShowDetail = ({ show }) => {
-  if (!show) return <p>No details found for this show.</p>;
+const ShowDetail = () => {
+  const { id: showId } = useParams(); // Get the `id` from URL
+  const [showDetails, setShowDetails] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchShowDetails = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const sanitiseInputURL = showId.replace(":", ""); // sanitize input URL
+        const response = await fetch(`https://podcast-api.netlify.app/id/${sanitiseInputURL}`);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch show details: ${response.statusText}`);
+        }
+
+        const details = await response.json();
+        setShowDetails(details);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchShowDetails();
+  }, [showId]);
+
+  if (loading) return <LoadingSpinner />;
+  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
+  if (!showDetails) return <p>No details found for this show.</p>;
 
   return (
     <div className="show-detail-container">
-      <h1>{show.title}</h1>
-      <img src={show.image} alt={show.title} className="show-image" />
-      <p>{show.description}</p>
-      <p>Seasons: {show.seasons}</p>
+      <h1>{showDetails.title}</h1>
+      <img src={showDetails.image} alt={showDetails.title} className="show-image" />
+      <p>{showDetails.description}</p>
+      <p>Seasons: {showDetails.seasons}</p>
     </div>
   );
-};
-
-ShowDetail.propTypes = {
-  show: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    seasons: PropTypes.number.isRequired,
-  }).isRequired,
 };
 
 export default ShowDetail;
