@@ -61,6 +61,12 @@ const PodcastList = () => {
     setPreviews(sortedPreviews);
   };
 
+  // Format the date to a human-readable format
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Intl.DateTimeFormat("en-US", options).format(new Date(dateString));
+  };
+
   return (
     <div className="podcast-list-container">
       <HomePageFilter onSort={handleSort} />
@@ -78,7 +84,9 @@ const PodcastList = () => {
                 />
                 <div className="podcast-info">
                   <h6>{preview.title}</h6>
-                  <p>Seasons: {preview.seasons}</p>
+                  <p><strong> Seasons: </strong>{preview.seasons}</p>
+                  {/* Display human-readable date */}
+                  <p><strong>Updated: </strong> {formatDate(preview.updated)}</p>
                 </div>
               </Link>
             </div>
@@ -90,4 +98,5 @@ const PodcastList = () => {
 };
 
 export default PodcastList;
+
 
