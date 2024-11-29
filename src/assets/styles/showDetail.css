@@ -1,69 +1,56 @@
-/* Show Detail Container */
-.show-detail-container {
+.seasons-flex-container {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;  
+    gap: 20px;  
+    justify-content: center;  
+    margin-top: 20px;
   }
   
-  /* Header Section */
-  .show-detail-header {
+
+  .season-card {
+    background-color: #f9f9f9; 
+    border-radius: 10px; 
+    width: 250px; 
+    padding: 20px;  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
     display: flex;
-    align-items: center;
-    gap: 20px;
+    flex-direction: column; 
+    align-items: center;  
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  
   }
   
-  /* Show Image */
-  .show-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 8px;
-    object-fit: cover;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  .season-card:hover {
+    transform: translateY(-5px);  
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  
   }
   
-  /* Header Info */
-  .show-header-info {
+  
+  .season-container {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    flex-direction: column; 
+    align-items: center; 
+    margin-bottom: 15px;  
   }
   
-  .show-title {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin: 0;
+  .season-button {
+    background-color: #57cc99;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
   }
   
-  .show-seasons {
-    font-size: 1rem;
-    color: #555;
+  .season-button:hover {
+    background-color: #22577a;
   }
-  
-  /* Description */
-  .show-description {
-    font-size: 1.1rem;
-    color: #333;
-    line-height: 1.5;
-  }
-  
-  /* Genres Section */
-  .show-genres {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  
-  .show-genre-badge {
-    background-color: #e0e0e0;
-    color: #333;
-    padding: 5px 10px;
-    font-size: 0.9rem;
-    border-radius: 12px;
-    text-transform: capitalize;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+
+  .season-image {
+    max-width: 100%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    width: 100px;
+    height: 100px;
   }
   
