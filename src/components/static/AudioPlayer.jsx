@@ -45,8 +45,7 @@ const AudioPlayer = ({ episode, onFavorite }) => {
       {/* Left Section: Episode Image and Title */}
       <div className="audio-player-left">
         <img
-          src={episode.image || "placeholder-image.jpg"} // Fallback image if none exists
-          alt={episode.title}
+          src={episode.image || episode.seasonImage || "placeholder-image.jpg"}
           className="audio-player-image"
         />
         <div className="audio-player-title">{episode.title || "No Episode Selected"}</div>
@@ -55,9 +54,40 @@ const AudioPlayer = ({ episode, onFavorite }) => {
       {/* Center Section: Audio and Progress Bar */}
       <div className="audio-player-center">
         <audio ref={audioRef} src={episode.file} />
-        <button className="play-pause-button" onClick={togglePlayPause}>
-          {isPlaying ? "Pause" : "Play"}
-        </button>
+        <button
+  className="play-pause-button"
+  onClick={togglePlayPause}
+  aria-label={isPlaying ? "Pause audio" : "Play audio"}
+  title={isPlaying ? "Pause" : "Play"}
+>
+  {isPlaying ? (
+    // Pause Icon
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="currentColor"
+      className="icon-pause"
+    >
+      <rect x="6" y="4" width="4" height="16"></rect>
+      <rect x="14" y="4" width="4" height="16"></rect>
+    </svg>
+  ) : (
+    // Play Icon
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      fill="currentColor"
+      className="icon-play"
+    >
+      <polygon points="5,3 19,12 5,21"></polygon>
+    </svg>
+  )}
+</button>
+
         
         <input
           type="range"
@@ -85,7 +115,8 @@ AudioPlayer.propTypes = {
   episode: PropTypes.shape({
     image: PropTypes.string,
     title: PropTypes.string,
-    file: PropTypes.string.isRequired, // Add file URL as required prop
+    seasonImage: PropTypes.string,
+    file: PropTypes.string.isRequired,
   }),
   onFavorite: PropTypes.func.isRequired,
 };
@@ -94,7 +125,7 @@ AudioPlayer.defaultProps = {
   episode: {
     image: "",
     title: "",
-    file: "", // Default empty string if not passed
+    file: "",
   },
 };
 

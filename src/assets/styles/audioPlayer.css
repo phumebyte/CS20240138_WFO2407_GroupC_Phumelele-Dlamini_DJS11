@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #f8f8f8;
+    background-color:  #2d3748;
     padding: 10px 20px;
     border-top: 2px solid #ddd;
     height: 80px;
@@ -31,17 +31,19 @@
   .audio-player-center {
     flex: 1;
     margin: 0 20px;
+    margin-left: 100px;
   }
   
   .audio-player-progress {
     width: 60%;
-    margin-left: 10px;
+    margin-left: 100px;
     -webkit-appearance: none;
     appearance: none;
     background: #ddd;
     height: 5px;
     border-radius: 2.5px;
     outline: none;
+    margin-top: -40px;
   }
   
   .audio-player-progress::-webkit-slider-thumb {
@@ -70,5 +72,40 @@
   
   .audio-player-heart.active {
     color: #ff6b6b;
+  }
+  
+  .play-pause-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+  }
+  
+  .play-pause-button:hover {
+    transform: scale(1.2);
+    color: #57CC99; 
+  }
+  
+  .play-pause-button:focus {
+    outline: 2px solid #80ED99; 
+  }
+  
+  /* SVG Styling */
+  .icon-play,
+  .icon-pause {
+    width: 2rem; 
+    height: 2rem;
+    transition: fill 0.3s ease;
+    fill: #22577A; 
+  }
+  
+  .icon-play:hover,
+  .icon-pause:hover {
+    fill: #38A3A5; 
   }
   

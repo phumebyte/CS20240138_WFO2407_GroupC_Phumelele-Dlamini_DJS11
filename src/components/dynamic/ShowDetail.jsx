@@ -20,7 +20,12 @@ const ShowDetail = ({ show }) => {
   };
 
   const toggleEpisode = (seasonIndex, episodeIndex, episode) => {
-    setSelectedEpisode(episode); 
+    const season = seasons[seasonIndex]
+    setSelectedEpisode( {
+      ...episode,
+      seasonImage: season.image || null,
+    }
+      ); 
     setVisibleEpisodes((prev) => ({
       ...prev,
       [`${seasonIndex}-${episodeIndex}`]: !prev[`${seasonIndex}-${episodeIndex}`],
