@@ -66,7 +66,7 @@ const ShowDetail = ({ show }) => {
                           onClick={() => toggleEpisode(index, episodeIndex)}
                           className="episode-button"
                         >
-                          <strong>{episode.title}</strong> - {episode.duration} min
+                          <strong>{episode.title}</strong>
                         </button>
 
                         {/* Render episode details if this episode is visible */}

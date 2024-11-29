@@ -53,4 +53,31 @@
     width: 100px;
     height: 100px;
   }
+
+.episode-button {
+    background-color: #38a3a5;  
+    color: white;
+    padding: 8px 16px; 
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 100%;  
+    text-align: center;  
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+  }
+  
+  /* Hover effect for episode button */
+  .episode-button:hover {
+    background-color: #22577a; 
+    transform: scale(1.05);  
+  }
+  
+  .episode-button:focus {
+    outline: 3px solid #80ed99; 
+    outline-offset: 3px;
+  }
+  
   
