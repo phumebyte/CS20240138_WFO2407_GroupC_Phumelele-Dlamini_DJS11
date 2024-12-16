@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchPreviews } from "../../services/showsApi";
 import "../../assets/styles/genres.css";
 import LoadingSpinner from "../shared/LoadingSpinner";
@@ -18,6 +19,7 @@ const GENRES = {
 const GenreDisplay = () => {
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // Initialize the useNavigate hook
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -40,7 +42,7 @@ const GenreDisplay = () => {
         // Create an array of genres with their shows' details
         const genreList = Object.values(genreMap).map((genre) => ({
           name: genre.name,
-          shows: genre.shows, // Include all shows for this genre
+          shows: genre.shows,
         }));
 
         setGenres(genreList);
@@ -54,6 +56,11 @@ const GenreDisplay = () => {
     fetchGenres();
   }, []);
 
+  const handleShowClick = (showId) => {
+    // Navigate to the show page with the show ID 
+    navigate(`/shows/${showId}`);
+  };
+
   return (
     <div className="genre-grid">
       {loading && <LoadingSpinner />}
@@ -63,7 +70,11 @@ const GenreDisplay = () => {
           <p className="genre-name">{genre.name}</p>
           <div className="genre-images">
             {genre.shows.map((show, showIndex) => (
-              <div key={showIndex} className="show-image-container">
+              <div 
+                key={showIndex} 
+                className="show-image-container"
+                onClick={() => handleShowClick(show.id)} 
+              >
                 <img
                   src={show.image}
                   alt={show.name}
