@@ -36,7 +36,6 @@ const ShowNavigation = () => {
 
   return (
     <div className="show-navigation">
-      <h1 className="navigation-title">Show Details</h1>
       {/* Pass the fetched 'show' data as an array to ShowDetail */}
       {show && show.length > 0 && <ShowDetail show={show[0]} />} {/* Only pass the first object in the array */}
     </div>
