@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { FiChevronDown } from "react-icons/fi";
+import { useNavigate } from "react-router-dom"; 
 import profilePicture from "../../assets/images/Phumelele-Dlamini.jpg";
-import search from "../../assets/images/search.svg"
+import search from "../../assets/images/search.svg";
 import "../../assets/styles/header.css";
 import { fetchPreviews } from "../../services/showsApi";
 
@@ -10,6 +11,7 @@ function Header() {
   const [searchTerm, setSearchTerm] = useState("");
   const [allShows, setAllShows] = useState([]);
   const [filteredShows, setFilteredShows] = useState([]);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchShows = async () => {
@@ -38,19 +40,23 @@ function Header() {
 
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
 
-  // Clear the search input and filtered shows array when the X button is cancelled
+  // Clear the search input and filtered shows array when the X button is clicked
   const clearSearchResults = () => {
     setSearchTerm("");
-    setFilteredShows([]); 
+    setFilteredShows([]);
   };
-  
+
+  // Navigate to the show's details page
+  const handleShowClick = (showId) => {
+    navigate(`/shows/${showId}`); 
+  };
 
   return (
     <header className="header">
       {/* Search Bar */}
       <div className="search-bar">
         <span>
-          <img src={search} alt="search-svg"/>
+          <img src={search} alt="search-svg" />
         </span>
         <input
           type="text"
@@ -60,10 +66,16 @@ function Header() {
         />
         {searchTerm && (
           <div className="search-results">
-            <button className="close-results" onClick={clearSearchResults}>✕</button>
+            <button className="close-results" onClick={clearSearchResults}>
+              ✕
+            </button>
             {filteredShows.length > 0 ? (
-              filteredShows.slice(0, 10).map((show) => ( 
-                <div key={show.id} className="search-result-item">
+              filteredShows.slice(0, 10).map((show) => (
+                <div
+                  key={show.id}
+                  className="search-result-item"
+                  onClick={() => handleShowClick(show.id)}
+                >
                   <img src={show.image} alt={show.title} className="show-image" />
                   <span>{show.title}</span>
                 </div>
